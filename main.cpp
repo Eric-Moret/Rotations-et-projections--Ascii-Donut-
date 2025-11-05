@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h> // For console settings
+#include <vector>
 
 void InitConsole()
 {
@@ -32,7 +33,17 @@ int main(int argc, char** argv)
     InitConsole();
     ClearConsole();
     SetCursorVisible(false);
-    std::cout << "Hello World" << std::endl;
+    int width = 100;
+    int height = 20;
+    std::vector<char> screen(width * height, '.');
+    for(int i = 0; i < height; i++)
+    {
+        for(int j = 0; j < width; j++)
+        {
+            std::cout << screen[width * i + j];
+        }
+        std::cout << std::endl;
+    }
     SetCursorVisible(true);
     return 0;
 }
