@@ -16,7 +16,14 @@ class Mesh
 {
     public:
     Mesh(Settings const& settings);
+    void GenerateCircle(float radius);
+    void GenerateHalfCircle(float radius);
+    void GenerateRectangle(float width, float height);
+    void GenerateSquare(float side);
     void Debug() const;
+
+    private:
+    void _GenerateSector(float radius, float angle);
 
     private:
     std::vector<Vertex> m_vertices;
