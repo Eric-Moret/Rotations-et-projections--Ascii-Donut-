@@ -4,6 +4,10 @@
 Settings::Settings(int argc, char** argv)
 : m_screenWidth(100)
 , m_screenHeight(20)
+, m_screenBackground(' ')
+, m_screenMeshProjection('X')
+, m_screenPosition(9.f)
+, m_viewerPosition(10.f)
 , m_meshResolution(32)
 {
     _ParseArguments(argc, argv);
@@ -23,6 +27,26 @@ void Settings::_ParseArguments(int argc, char** argv)
         else if (arg == "-h" && i + 1 < argc)
         {
             m_screenHeight = std::atoi(argv[i+1]);
+            i++;
+        }
+        else if (arg == "-b" && i + 1 < argc)
+        {
+            m_screenBackground = argv[i+1][0];
+            i++;
+        }
+        else if (arg == "-p" && i + 1 < argc)
+        {
+            m_screenMeshProjection = argv[i+1][0];
+            i++;
+        }
+        else if (arg == "-s" && i + 1 < argc)
+        {
+            m_screenPosition = std::atof(argv[i+1]);
+            i++;
+        }
+        else if (arg == "-v" && i + 1 < argc)
+        {
+            m_viewerPosition = std::atof(argv[i+1]);
             i++;
         }
         else if (arg == "-r" && i + 1 < argc)

@@ -16,6 +16,7 @@ class Mesh
 {
     public:
     Mesh(Settings const& settings);
+    std::vector<Vertex> const& GetVertices() const { return m_vertices; }
     void GenerateCircle(float radius);
     void GenerateHalfCircle(float radius);
     void GenerateRectangle(float width, float height);
