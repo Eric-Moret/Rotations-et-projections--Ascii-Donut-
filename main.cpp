@@ -28,6 +28,25 @@ void SetCursorVisible(bool visible)
     }
 }
 
+void GetScreenSize(int argc, char** argv, int& width, int& height)
+{
+    // Elegant solution from @T.Rosselet
+    for (int i = 1; i < argc; i++) //i starts at 1 because command line arguments start with argv[1] (argv[0] is the name of the exe)
+    {
+        std::string arg = argv[i];
+        if (arg == "-w" && i + 1 < argc)
+        {
+            width = std::atoi(argv[i+1]);
+            i++;
+        }
+        else if (arg == "-h" && i + 1 < argc)
+        {
+            height = std::atoi(argv[i+1]);
+            i++;
+        }
+    }
+}
+
 int main(int argc, char** argv)
 {
     InitConsole();
@@ -35,6 +54,7 @@ int main(int argc, char** argv)
     SetCursorVisible(false);
     int width = 100;
     int height = 20;
+    GetScreenSize(argc, argv, width, height);
     std::vector<char> screen(width * height, '.');
     for(int i = 0; i < height; i++)
     {
