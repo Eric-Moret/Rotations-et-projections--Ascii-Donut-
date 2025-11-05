@@ -2,6 +2,7 @@
 #include <windows.h> // For console settings
 #include "Settings.h"
 #include "Screen.h"
+#include "Mesh.h"
 
 void InitConsole()
 {
@@ -36,7 +37,8 @@ int main(int argc, char** argv)
     SetCursorVisible(false);
     Settings settings(argc, argv);
     Screen screen(settings);
-    screen.Display();
+    Mesh mesh;
+    mesh.Debug();
     SetCursorVisible(true);
     return 0;
 }
