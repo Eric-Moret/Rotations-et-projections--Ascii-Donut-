@@ -37,7 +37,8 @@ int main(int argc, char** argv)
     SetCursorVisible(false);
     Settings settings(argc, argv);
     Screen screen(settings);
-    Mesh mesh;
+    screen.Display();
+    Mesh mesh(settings);
     mesh.Debug();
     SetCursorVisible(true);
     return 0;
