@@ -28,33 +28,52 @@ void SetCursorVisible(bool visible)
     }
 }
 
-void GetScreenSize(int argc, char** argv, int& width, int& height)
+class Settings
 {
-    // Elegant solution from @T.Rosselet
-    for (int i = 1; i < argc; i++) //i starts at 1 because command line arguments start with argv[1] (argv[0] is the name of the exe)
+    public:
+    Settings(int argc, char** argv)
+    : m_screenWidth(100)
+    , m_screenHeight(20)
     {
-        std::string arg = argv[i];
-        if (arg == "-w" && i + 1 < argc)
+        _ParseArguments(argc, argv);
+    }
+
+    int GetScreenWidth() const { return m_screenWidth; }
+    int GetScreenHeight() const { return m_screenHeight; }
+
+    private:
+    void _ParseArguments(int argc, char** argv)
+    {
+        // Elegant solution from @T.Rosselet
+        for (int i = 1; i < argc; i++) //i starts at 1 because command line arguments start with argv[1] (argv[0] is the name of the exe)
         {
-            width = std::atoi(argv[i+1]);
-            i++;
-        }
-        else if (arg == "-h" && i + 1 < argc)
-        {
-            height = std::atoi(argv[i+1]);
-            i++;
+            std::string arg = argv[i];
+            if (arg == "-w" && i + 1 < argc)
+            {
+                m_screenWidth = std::atoi(argv[i+1]);
+                i++;
+            }
+            else if (arg == "-h" && i + 1 < argc)
+            {
+                m_screenHeight = std::atoi(argv[i+1]);
+                i++;
+            }
         }
     }
-}
+
+    private:
+    int m_screenWidth;
+    int m_screenHeight;
+};
 
 int main(int argc, char** argv)
 {
     InitConsole();
     ClearConsole();
     SetCursorVisible(false);
-    int width = 100;
-    int height = 20;
-    GetScreenSize(argc, argv, width, height);
+    Settings settings(argc, argv);
+    int width = settings.GetScreenWidth();
+    int height = settings.GetScreenHeight();
     std::vector<char> screen(width * height, '.');
     for(int i = 0; i < height; i++)
     {
