@@ -38,7 +38,7 @@ int main(int argc, char** argv)
     Settings settings(argc, argv);
     Screen screen(settings);
     Mesh mesh(settings);
-    mesh.GenerateSquare(200.f);
+    mesh.GenerateTorus(175.f, 50.f);
     screen.Display(mesh);
     SetCursorVisible(true);
     return 0;
