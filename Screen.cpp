@@ -53,7 +53,7 @@ void Screen::_ProjectInCenterScreenSpace(Vertex& vertex)
 {
     float k( (m_viewerPosition - m_meshPosition) / m_viewerPosition);
     vertex.x *= k;
-    vertex.y *= k;
+    vertex.y *= k/2;
     vertex.z += m_meshPosition;
 }
 
