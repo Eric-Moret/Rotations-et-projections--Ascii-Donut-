@@ -4,6 +4,32 @@
 
 constexpr float PI = 3.14159265f;
 
+void Vertex::Rotate(float angle, Axis axis)
+{
+    Vertex previous = *this;
+    switch(axis)
+    {
+        case Axis::X:
+        {
+            y = previous.y * std::cos(angle) - previous.z * std::sin(angle);
+            z = previous.y * std::sin(angle) + previous.z * std::cos(angle);
+        }
+        break;
+        case Axis::Y:
+        {
+            x = previous.z * std::sin(angle) + previous.x * std::cos(angle);
+            z = previous.z * std::cos(angle) - previous.x * std::sin(angle);
+        }
+        break;
+        case Axis::Z:
+        {
+            x = previous.x * std::cos(angle) - previous.y * std::sin(angle);
+            y = previous.x * std::sin(angle) + previous.y * std::cos(angle);
+        }
+        break;
+    }
+}
+
 Mesh::Mesh(Settings const& settings)
 : m_resolution(settings.GetMeshResolution())
 {
@@ -32,9 +58,18 @@ void Mesh::GenerateRectangle(float width, float height)
         }
     }
 }
+
 void Mesh::GenerateSquare(float side)
 {
     GenerateRectangle(side, side);
+}
+
+void Mesh::Rotate(float angle, Axis axis)
+{
+    for(Vertex& vertex : m_vertices)
+    {
+        vertex.Rotate(angle, axis);
+    }
 }
 
 void Mesh::Debug() const
