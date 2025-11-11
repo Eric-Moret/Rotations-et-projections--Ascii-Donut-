@@ -11,6 +11,8 @@ class Settings
     float GetViewerPosition() const { return m_viewerPosition; }
     char GetScreenMeshProjection() const { return m_screenMeshProjection; }
     int GetMeshResolution() const { return m_meshResolution; }
+    float GetMeshRotationXPerFrame() const { return m_meshRotationXPerFrame; }
+    int GetFrameDuration() const { return m_frameDuration; }
     
     private:
     void _ParseArguments(int argc, char** argv);
@@ -23,4 +25,6 @@ class Settings
     float m_viewerPosition;
     char m_screenMeshProjection;
     int m_meshResolution;
+    float m_meshRotationXPerFrame;
+    int m_frameDuration;
 };

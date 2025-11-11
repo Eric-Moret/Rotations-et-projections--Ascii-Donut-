@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h> // For console settings
+#include <unistd.h> // For usleep
 #include "Settings.h"
 #include "Screen.h"
 #include "Mesh.h"
@@ -12,10 +13,15 @@ void InitConsole()
     SetConsoleMode(hConsole, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
 }
 
+void SetCursorToHomePosition()
+{
+    std::cout << "\x1b[H"; // Set cursor pos to "home" position (0,0)
+}
+
 void ClearConsole()
 {
     std::cout << "\x1b[2J"; // Remove all characters in console
-    std::cout << "\x1b[H"; // Set cursor pos to "home" position (0,0)
+    SetCursorToHomePosition();
 }
 
 void SetCursorVisible(bool visible)
@@ -39,7 +45,12 @@ int main(int argc, char** argv)
     Screen screen(settings);
     Mesh mesh(settings);
     mesh.GenerateTorus(175.f, 50.f);
-    screen.Display(mesh);
-    SetCursorVisible(true);
+    while(true)
+    {
+        SetCursorToHomePosition();
+        mesh.Rotate(settings.GetMeshRotationXPerFrame(), Axis::X);
+        screen.Display(mesh);
+        usleep(settings.GetFrameDuration());
+    }
     return 0;
 }
