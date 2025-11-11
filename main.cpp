@@ -1,6 +1,7 @@
 #include <iostream>
 #include <windows.h> // For console settings
 #include <unistd.h> // For usleep
+#include <signal.h> // To intercept kill ctrl+c
 #include "Settings.h"
 #include "Screen.h"
 #include "Mesh.h"
@@ -36,8 +37,16 @@ void SetCursorVisible(bool visible)
     }
 }
 
+void OnKill(int signum)
+{
+    ClearConsole();
+    SetCursorVisible(true);
+    exit(signum);
+}
+
 int main(int argc, char** argv)
 {
+    signal(SIGINT, OnKill);
     InitConsole();
     ClearConsole();
     SetCursorVisible(false);
