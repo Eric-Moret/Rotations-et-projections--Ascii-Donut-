@@ -40,20 +40,9 @@ int main(int argc, char** argv)
     SetCursorVisible(false);
     Settings settings(argc, argv);
     Screen screen(settings);
-    screen.Display();
     Mesh mesh(settings);
-    mesh.GenerateRectangle(10.f, 20.f);
-    std::cout << "Rectangle 10x20:" << std::endl;
+    mesh.GenerateTorus(4.f, 0.9f);
     screen.Display(mesh);
-    mesh.GenerateSquare(20.f);
-    std::cout << "Square 20x20:" << std::endl;
-    screen.Display(mesh);
-    mesh.GenerateCircle(15.f);
-    std::cout << "Circle radius 15:" << std::endl;
-    screen.Display(mesh);
-    mesh.GenerateHalfCircle(15.f);
-    std::cout << "Half Circle radius 15:" << std::endl;
-    mesh.Rotate(M_PI/2, Axis::Z);
-    screen.Display(mesh);
+    SetCursorVisible(true);
     return 0;
 }
