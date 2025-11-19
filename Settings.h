@@ -12,6 +12,8 @@ class Settings
     int GetMeshResolution() const { return m_meshResolution; }
     float GetMeshPosition() const { return m_meshPosition; }
     float GetMeshRotationXPerFrame() const { return m_meshRotationXPerFrame; }
+    float GetMeshRotationYPerFrame() const { return m_meshRotationYPerFrame; }
+    float GetMeshRotationZPerFrame() const { return m_meshRotationZPerFrame; }
     int GetFrameDuration() const { return m_frameDuration; }
 
     private:
@@ -26,5 +28,7 @@ class Settings
     int m_meshResolution;
     float m_meshPosition;
     float m_meshRotationXPerFrame;
+    float m_meshRotationYPerFrame;
+    float m_meshRotationZPerFrame;
     int m_frameDuration;
 };
