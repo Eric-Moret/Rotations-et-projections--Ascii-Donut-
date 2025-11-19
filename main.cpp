@@ -1,5 +1,8 @@
+#define _USE_MATH_DEFINES
+
 #include <iostream>
 #include <windows.h> // For console settings
+#include <cmath>
 #include "Settings.h"
 #include "Screen.h"
 #include "Mesh.h"
@@ -50,6 +53,7 @@ int main(int argc, char** argv)
     screen.Display(mesh);
     mesh.GenerateHalfCircle(15.f);
     std::cout << "Half Circle radius 15:" << std::endl;
+    mesh.Rotate(M_PI/2, Axis::Z);
     screen.Display(mesh);
     return 0;
 }
