@@ -53,7 +53,7 @@ void Screen::_ProjectInCenterScreenSpace(Vertex& vertex)
 {
     vertex.z += m_meshZPosition;
     vertex.x = m_zPosition * vertex.x / vertex.z;
-    vertex.y = m_zPosition * vertex.y / vertex.z;
+    vertex.y = m_zPosition * vertex.y / vertex.z / 2.f;
 }
 
 void Screen::_ProjectInTopLeftScreenSpace(Vertex& vertex)
