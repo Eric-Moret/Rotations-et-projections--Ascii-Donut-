@@ -12,6 +12,9 @@ Settings::Settings(int argc, char** argv)
 , m_meshRotationXPerFrame(0.02f)
 , m_meshRotationYPerFrame(0.04f)
 , m_meshRotationZPerFrame(0.0f)
+, m_lightDirectionX(1.f)
+, m_lightDirectionY(1.f)
+, m_lightDirectionZ(1.f)
 , m_frameDuration(0)
 {
     _ParseArguments(argc, argv);
@@ -71,6 +74,21 @@ void Settings::_ParseArguments(int argc, char** argv)
         else if (arg == "-z" && i + 1 < argc)
         {
             m_meshRotationZPerFrame = std::atof(argv[i+1]);
+            i++;
+        }
+        else if (arg == "-lx" && i + 1 < argc)
+        {
+            m_lightDirectionX = std::atof(argv[i+1]);
+            i++;
+        }
+        else if (arg == "-ly" && i + 1 < argc)
+        {
+            m_lightDirectionY = std::atof(argv[i+1]);
+            i++;
+        }
+        else if (arg == "-lz" && i + 1 < argc)
+        {
+            m_lightDirectionZ = std::atof(argv[i+1]);
             i++;
         }
         else if (arg == "-f" && i + 1 < argc)
