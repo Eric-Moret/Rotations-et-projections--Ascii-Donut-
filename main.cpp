@@ -58,16 +58,17 @@ int main(int argc, char** argv)
     Screen screen(settings);
     Mesh mesh(settings);
     Light light(settings);
-    /*mesh.GenerateTorus(4.f, 0.9f);
+    mesh.GenerateTorus(4.f, 2.5f);
+    mesh.Rotate(M_PI / 4.f, Axis::Y);
+    mesh.Rotate(M_PI / 4.f, Axis::X);
     while(true)
     {
         SetCursorToHomePosition();
         mesh.Rotate(settings.GetMeshRotationXPerFrame(), Axis::X);
         mesh.Rotate(settings.GetMeshRotationYPerFrame(), Axis::Y);
         mesh.Rotate(settings.GetMeshRotationZPerFrame(), Axis::Z);
-        screen.Display(mesh);
+        screen.Display(mesh, light);
         usleep(settings.GetFrameDuration());
-    }*/
-    light.Debug();
+    }
     return 0;
 }
