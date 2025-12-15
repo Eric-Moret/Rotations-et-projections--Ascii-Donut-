@@ -3,6 +3,7 @@
 #include <cmath>
 #include "Mesh.h"
 #include "Settings.h"
+#include "Light.h"
 
 void Vertex::Rotate(float angle, Axis axis)
 {
@@ -34,6 +35,11 @@ void Vertex::Rotate(float angle, Axis axis)
         }
         break;
     }
+}
+
+float Vertex::ComputeIllumination(Light const& light) const
+{
+    return nx*light.GetNormalizedLight().nx + ny*light.GetNormalizedLight().ny + nz*light.GetNormalizedLight().nz; 
 }
 
 Mesh::Mesh(Settings const& settings)
