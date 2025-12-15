@@ -13,18 +13,24 @@ void Vertex::Rotate(float angle, Axis axis)
         {
             y = previous.y * std::cos(angle) - previous.z * std::sin(angle);
             z = previous.y * std::sin(angle) + previous.z * std::cos(angle);
+            ny = previous.ny * std::cos(angle) - previous.nz * std::sin(angle);
+            nz = previous.ny * std::sin(angle) + previous.nz * std::cos(angle);
         }
         break;
         case Axis::Y:
         {
             x = previous.z * std::sin(angle) + previous.x * std::cos(angle);
             z = previous.z * std::cos(angle) - previous.x * std::sin(angle);
+            nx = previous.nz * std::sin(angle) + previous.nx * std::cos(angle);
+            nz = previous.nz * std::cos(angle) - previous.nx * std::sin(angle);
         }
         break;
         case Axis::Z:
         {
             x = previous.x * std::cos(angle) - previous.y * std::sin(angle);
             y = previous.x * std::sin(angle) + previous.y * std::cos(angle);
+            nx = previous.nx * std::cos(angle) - previous.ny * std::sin(angle);
+            ny = previous.nx * std::sin(angle) + previous.ny * std::cos(angle);
         }
         break;
     }
